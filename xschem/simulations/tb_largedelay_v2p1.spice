@@ -1,0 +1,90 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_largedelay_v2p1.sch
+**.subckt tb_largedelay_v2p1
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN VIN VSS PULSE(0 1.2 3u 1n 1n 12u 24u)
+C1 VOUT VSS 10f m=1
+x1 VCC VSS VIN VOUT_1 large_delay_v1p1
+x2 VCC VSS VOUT_1 VOUT large_delay_v1p1
+**** begin user architecture code
+
+
+.option scale=1e-6
+.save v(vin) v(vout)
+.control
+tran 2n 6u
+plot v(vin) v(vout)
+plot v(vin) v(vout)+2
+.endc
+
+.measure tran tdelay
++ TRIG tran1.V(VIN) TD=0u VAL=0.9 RISE=1
++ TARG tran1.V(VOUT) TD=0u VAL=0.9 RISE=1
+
+
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  large_delay_v1p1.sym # of pins=4
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/large_delay_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/large_delay_v1p1.sch
+.subckt large_delay_v1p1 VCC VSS VIN VOUT
+*.iopin VIN
+*.iopin VOUT
+*.iopin VCC
+*.iopin VSS
+x1[0] VIN VCC VSS n2 sg13g2_dlygate4sd3_1
+x1[1] n2 VCC VSS n3 sg13g2_dlygate4sd3_1
+x1[2] n3 VCC VSS n4 sg13g2_dlygate4sd3_1
+x1[3] n4 VCC VSS n5 sg13g2_dlygate4sd3_1
+x1[4] n5 VCC VSS n6 sg13g2_dlygate4sd3_1
+x1[5] n6 VCC VSS n7 sg13g2_dlygate4sd3_1
+x1[6] n7 VCC VSS n8 sg13g2_dlygate4sd3_1
+x1[7] n8 VCC VSS n9 sg13g2_dlygate4sd3_1
+x1[8] n9 VCC VSS n10 sg13g2_dlygate4sd3_1
+x1[9] n10 VCC VSS n11 sg13g2_dlygate4sd3_1
+x1[10] n11 VCC VSS n12 sg13g2_dlygate4sd3_1
+x1[11] n12 VCC VSS n13 sg13g2_dlygate4sd3_1
+x1[12] n13 VCC VSS n14 sg13g2_dlygate4sd3_1
+x1[13] n14 VCC VSS n15 sg13g2_dlygate4sd3_1
+x1[14] n15 VCC VSS n16 sg13g2_dlygate4sd3_1
+x1[15] n16 VCC VSS n17 sg13g2_dlygate4sd3_1
+x1[16] n17 VCC VSS n18 sg13g2_dlygate4sd3_1
+x1[17] n18 VCC VSS n19 sg13g2_dlygate4sd3_1
+x1[18] n19 VCC VSS n20 sg13g2_dlygate4sd3_1
+x1[19] n20 VCC VSS n21 sg13g2_dlygate4sd3_1
+x1[20] n21 VCC VSS n22 sg13g2_dlygate4sd3_1
+x1[21] n22 VCC VSS n23 sg13g2_dlygate4sd3_1
+x1[22] n23 VCC VSS n24 sg13g2_dlygate4sd3_1
+x1[23] n24 VCC VSS n25 sg13g2_dlygate4sd3_1
+x1[24] n25 VCC VSS n26 sg13g2_dlygate4sd3_1
+x1[25] n26 VCC VSS n27 sg13g2_dlygate4sd3_1
+x1[26] n27 VCC VSS n28 sg13g2_dlygate4sd3_1
+x1[27] n28 VCC VSS n29 sg13g2_dlygate4sd3_1
+x1[28] n29 VCC VSS n30 sg13g2_dlygate4sd3_1
+x1[29] n30 VCC VSS n31 sg13g2_dlygate4sd3_1
+x1[30] n31 VCC VSS n32 sg13g2_dlygate4sd3_1
+x1[31] n32 VCC VSS n33 sg13g2_dlygate4sd3_1
+x1[32] n33 VCC VSS n34 sg13g2_dlygate4sd3_1
+x1[33] n34 VCC VSS n35 sg13g2_dlygate4sd3_1
+x1[34] n35 VCC VSS n36 sg13g2_dlygate4sd3_1
+x1[35] n36 VCC VSS VOUT sg13g2_dlygate4sd3_1
+.ends
+
+.GLOBAL GND
+.end
