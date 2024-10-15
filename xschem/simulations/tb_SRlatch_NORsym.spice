@@ -1,0 +1,49 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_SRlatch_NORsym.sch
+**.subckt tb_SRlatch_NORsym
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN2 VIN2 VSS PULSE(0 1.2 45n 1n 1n 3n 245n)
+VIN1 VIN1 VSS PULSE(0 1.2 0n 1n 1n 3n 200n)
+x3 VCC VSS VIN1 V_PWM VIN2 SRlatch_NOR
+**** begin user architecture code
+
+
+.control
+save all
+tran 1n 20u
+*plot V(VIN1) V(VIN2)+2 V(V_N)+4 V(V_PWM)+6
+plot V(VIN1) V(VIN2)+2 V(V_PWM)+4
+.endc
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  SRlatch_NOR.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/SRlatch_NOR.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/SRlatch_NOR.sch
+.subckt SRlatch_NOR VCC VSS VINS V_PWM VINR
+*.iopin VINS
+*.iopin V_PWM
+*.iopin VCC
+*.iopin VSS
+*.iopin VINR
+x3 VINS V_PWM VCC VSS V_N sg13g2_nor2_1
+x1 V_N VINR VCC VSS V_PWM sg13g2_nor2_1
+.ends
+
+.GLOBAL GND
+.end

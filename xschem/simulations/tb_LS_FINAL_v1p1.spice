@@ -1,0 +1,62 @@
+** sch_path: /home/designer/shared/TO202406_CMOSVCO_Esm22/xschem/tb_LS_FINAL_v1p1.sch
+**.subckt tb_LS_FINAL_v1p1
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN VIN VSS PULSE(0 1.2 11u 1n 1n 12u 24u)
+C1 VOUT VSS 100p m=1
+x1 VH VCC VIN VOUT VSS LS_FINAL_IHP_v2
+VH VH GND 3.3
+**** begin user architecture code
+
+
+.save v(vin) v(vout)
+.control
+tran 10n 36u
+plot v(vin) v(vout)
+plot v(vin) v(vout)+2
+.endc
+
+.measure tran tdelay
++ TRIG tran1.V(VIN) TD=0u VAL=0.9 RISE=1
++ TARG tran1.V(VOUT) TD=0u VAL=1.65 RISE=1
+
+
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  LS_FINAL_IHP_v2.sym # of pins=5
+** sym_path: /home/designer/shared/TO202406_CMOSVCO_Esm22/xschem/LS_FINAL_IHP_v2.sym
+** sch_path: /home/designer/shared/TO202406_CMOSVCO_Esm22/xschem/LS_FINAL_IHP_v2.sch
+.subckt LS_FINAL_IHP_v2 VH VDD IN OUT VSS
+*.ipin IN
+*.iopin VDD
+*.iopin VH
+*.opin OUT
+*.iopin VSS
+XM1 net1 IN VSS VSS sg13_lv_nmos w=1.0u l=0.15u ng=1 m=5
+XM2 net1 IN VDD VDD sg13_lv_pmos w=1.0u l=0.15u ng=1 m=5
+XM3 net2 net1 VSS VSS sg13_hv_nmos w=4.0u l=0.5u ng=1 m=3
+XM4 net2 net3 VH VH sg13_hv_pmos w=2.0u l=0.5u ng=1 m=1
+XM5 net3 net2 VH VH sg13_hv_pmos w=2.0u l=0.5u ng=1 m=1
+XM6 net3 IN VSS VSS sg13_hv_nmos w=4.0u l=0.5u ng=1 m=3
+XM8 net4 net2 VH VH sg13_hv_pmos w=10.0u l=0.5u ng=1 m=10
+XM9 net4 IN VSS VSS sg13_hv_nmos w=10.0u l=0.5u ng=1 m=10
+XM7 OUT net4 VH VH sg13_hv_pmos w=10.0u l=0.5u ng=1 m=20
+XM10 OUT net4 VSS VSS sg13_hv_nmos w=10.0u l=0.5u ng=1 m=20
+.ends
+
+.GLOBAL GND
+.end
