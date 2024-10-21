@@ -29,7 +29,7 @@ plot tran1.v(V_1) (tran9.v(V_1)+4) (tran17.v(V_1)+8)
 
 .if (corner==0)
 .lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
-.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
 .lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
 .lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
 .endif
@@ -63,15 +63,15 @@ x5 VDD VCONT V_5 V_4 VSS stage_v6p1_IHP
 *.iopin VDD
 *.iopin VSS
 *.ipin VCONT
-XM9 net4 net4 VSS VSS sg13_lv_nmos w=5u l=0.5u ng=1 m=1
-XM3 net3 net4 VSS VSS sg13_lv_nmos w=5u l=0.5u ng=1 m=1
-XM5 net2 net4 VSS VSS sg13_lv_nmos w=3u l=0.5u ng=1 m=1
-XM8 net4 VCONT VDD VDD sg13_lv_pmos w=1u l=7u ng=1 m=1
-XM4 net3 net3 VDD VDD sg13_lv_pmos w=8u l=4u ng=1 m=1
-XM6 net1 net3 VDD VDD sg13_lv_pmos w=5u l=4u ng=1 m=1
-XM2 VOUT VIN net1 VDD sg13_lv_pmos w=5u l=5u ng=1 m=1
-XM1 VOUT VIN net2 VSS sg13_lv_nmos w=2u l=5u ng=5 m=1
-XM7 net4 VSS VDD VDD sg13_lv_pmos w=3u l=7u ng=1 m=1
+XM9 net4 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM3 net3 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM5 net2 net4 VSS VSS sg13_hv_nmos w=3u l=0.5u ng=1 m=1
+XM8 net4 VCONT VDD VDD sg13_hv_pmos w=1u l=7u ng=1 m=1
+XM4 net3 net3 VDD VDD sg13_hv_pmos w=8u l=4u ng=1 m=1
+XM6 net1 net3 VDD VDD sg13_hv_pmos w=5u l=4u ng=1 m=1
+XM2 VOUT VIN net1 VDD sg13_hv_pmos w=5u l=5u ng=1 m=1
+XM1 VOUT VIN net2 VSS sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM7 net4 VSS VDD VDD sg13_hv_pmos w=3u l=7u ng=1 m=1
 .ends
 
 .end

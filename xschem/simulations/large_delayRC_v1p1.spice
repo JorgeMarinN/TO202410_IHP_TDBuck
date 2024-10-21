@@ -1,0 +1,12 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/large_delayRC_v1p1.sch
+**.subckt large_delayRC_v1p1 VCC VSS VIN VOUT
+*.iopin VIN
+*.iopin VOUT
+*.iopin VCC
+*.iopin VSS
+x1 VIN VCC VSS net1 sg13g2_dlygate4sd3_1
+x2 net1 VCC VSS VOUT sg13g2_dlygate4sd3_1
+C1 net1 VSS 1.5p m=1
+C2 VOUT VSS 1.5p m=1
+**.ends
+.end

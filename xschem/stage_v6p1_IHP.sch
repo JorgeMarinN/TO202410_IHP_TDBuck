@@ -133,76 +133,76 @@ C {devices/opin.sym} 310 70 0 0 {name=p5 lab=VOUT}
 C {devices/iopin.sym} 250 -140 3 0 {name=p2 lab=VDD}
 C {devices/iopin.sym} 250 290 1 0 {name=p4 lab=VSS}
 C {devices/ipin.sym} -330 -90 0 0 {name=p3 lab=VCONT}
-C {sg13g2_pr/sg13_lv_nmos.sym} -240 240 2 0 {name=M9
+C {sg13g2_pr/sg13_hv_nmos.sym} -240 240 2 0 {name=M9
 l=0.5u
 w=5u
 ng=1
 m=1
-model=sg13_lv_nmos
+model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} -20 240 2 1 {name=M3
+C {sg13g2_pr/sg13_hv_nmos.sym} -20 240 2 1 {name=M3
 l=0.5u
 w=5u
 ng=1
 m=1
-model=sg13_lv_nmos
+model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 230 240 2 1 {name=M5
+C {sg13g2_pr/sg13_hv_nmos.sym} 230 240 2 1 {name=M5
 l=0.5u
 w=3u
 ng=1
 m=1
-model=sg13_lv_nmos
+model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} -280 -90 0 0 {name=M8
+C {sg13g2_pr/sg13_hv_pmos.sym} -280 -90 0 0 {name=M8
 l=7u
 w=1u
 ng=1
 m=1
-model=sg13_lv_pmos
+model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} 20 -90 0 1 {name=M4
+C {sg13g2_pr/sg13_hv_pmos.sym} 20 -90 0 1 {name=M4
 l=4u
 w=8u
 ng=1
 m=1
-model=sg13_lv_pmos
+model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} 230 -90 0 0 {name=M6
+C {sg13g2_pr/sg13_hv_pmos.sym} 230 -90 0 0 {name=M6
 l=4u
 w=5u
 ng=1
 m=1
-model=sg13_lv_pmos
+model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} 230 20 0 0 {name=M2
+C {sg13g2_pr/sg13_hv_pmos.sym} 230 20 0 0 {name=M2
 l=5u
 w=5u
 ng=1
 m=1
-model=sg13_lv_pmos
+model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 230 130 2 1 {name=M1
+C {sg13g2_pr/sg13_hv_nmos.sym} 230 130 2 1 {name=M1
 l=5u
 w=2u
-ng=5
+ng=1
 m=1
-model=sg13_lv_nmos
+model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} -150 -90 0 0 {name=M7
+C {sg13g2_pr/sg13_hv_pmos.sym} -150 -90 0 0 {name=M7
 l=7u
 w=3u
 ng=1
 m=1
-model=sg13_lv_pmos
+model=sg13_hv_pmos
 spiceprefix=X
 }
 C {lab_pin.sym} -190 -90 0 0 {name=p6 sig_type=std_logic lab=VSS}

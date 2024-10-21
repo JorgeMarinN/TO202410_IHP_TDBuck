@@ -1,0 +1,11 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/SRlatch_NOR.sch
+**.subckt SRlatch_NOR VCC VSS VINS V_PWM VINR
+*.iopin VINS
+*.iopin V_PWM
+*.iopin VCC
+*.iopin VSS
+*.iopin VINR
+x3 VINS V_PWM VCC VSS V_N sg13g2_nor2_1
+x1 V_N VINR VCC VSS V_PWM sg13g2_nor2_1
+**.ends
+.end

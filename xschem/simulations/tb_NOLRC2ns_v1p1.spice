@@ -1,0 +1,84 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_NOLRC2ns_v1p1.sch
+**.subckt tb_NOLRC2ns_v1p1
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN VIN VSS PULSE(0 1.2 25n 1p 1p 100n 200n)
+C1 VCP VSS 10f m=1
+C2 VCN VSS 10f m=1
+x1 VCC VSS VCP VIN VCN NOLRC2ns_v1p1
+**** begin user architecture code
+
+
+.save v(vin) v(vcp) v(vcn)
+.control
+tran 100p 300n
+plot v(vin) v(vcp) v(vcn)
+plot v(vin) v(vcp)+1.5 v(vcn)+3
+.endc
+
+.measure tran tdead_fall
++ TRIG tran1.V(vcn) TD=0u VAL=0.6 FALL=1
++ TARG tran1.V(vcp) TD=0u VAL=0.6 FALL=1
+
+
+.measure tran tdead_rise
++ TRIG tran1.V(vcp) TD=0u VAL=0.6 RISE=1
++ TARG tran1.V(vcn) TD=0u VAL=0.6 RISE=1
+
+
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  NOLRC2ns_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sch
+.subckt NOLRC2ns_v1p1 VCC VSS VCP CLK VCN
+*.iopin CLK
+*.iopin VCP
+*.iopin VCN
+*.iopin VCC
+*.iopin VSS
+x5 CLK VCC VSS net1 sg13g2_inv_1
+x3 net1 net4 VCC VSS net2 sg13g2_nor2_1
+x1 net5 CLK VCC VSS net3 sg13g2_nor2_1
+x2 net4 VCC VSS net8 sg13g2_inv_1
+x6 net5 VCC VSS net6 sg13g2_inv_2
+x7 net8 VCC VSS net7 sg13g2_inv_2
+x8 net6 VCC VSS VCN sg13g2_inv_4
+x9 net7 VCC VSS VCP sg13g2_inv_4
+x10 VCC VSS net2 net5 delayRC2ns_v1p1
+x4 VCC VSS net3 net4 delayRC2ns_v1p1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym # of pins=4
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sch
+.subckt delayRC2ns_v1p1 VCC VSS VIN VOUT
+*.iopin VIN
+*.iopin VOUT
+*.iopin VCC
+*.iopin VSS
+x1 VIN VCC VSS net1 sg13g2_dlygate4sd3_1
+x2 net1 VCC VSS VOUT sg13g2_dlygate4sd3_1
+C1 net1 VSS 0.15p m=1
+C2 VOUT VSS 0.15p m=1
+.ends
+
+.GLOBAL GND
+.end
