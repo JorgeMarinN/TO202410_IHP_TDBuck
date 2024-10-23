@@ -202,7 +202,7 @@ model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 90 -170 0 1 {name=MD1
-l=0.45u
+l=0.4u
 w=10u
 ng=1
 m=1
@@ -210,7 +210,7 @@ model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 240 -170 0 0 {name=MD3
-l=0.45u
+l=0.4u
 w=10u
 ng=1
 m=1
@@ -218,7 +218,7 @@ model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 410 -170 0 0 {name=MD5
-l=0.45u
+l=0.4u
 w=10u
 ng=1
 m=30
@@ -226,7 +226,7 @@ model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 580 -170 0 0 {name=MD7
-l=0.45u
+l=0.4u
 w=10u
 ng=1
 m=250
@@ -234,7 +234,7 @@ model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 50 0 2 1 {name=MD2
-l=0.4u
+l=0.45u
 w=10u
 ng=1
 m=6
@@ -242,7 +242,7 @@ model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 280 0 2 0 {name=MD4
-l=0.4u
+l=0.45u
 w=10u
 ng=1
 m=6
@@ -250,7 +250,7 @@ model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 410 0 2 1 {name=MD6
-l=0.4u
+l=0.45u
 w=10u
 ng=1
 m=25
@@ -258,7 +258,7 @@ model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 580 0 2 1 {name=MD8
-l=0.4u
+l=0.45u
 w=10u
 ng=1
 m=200

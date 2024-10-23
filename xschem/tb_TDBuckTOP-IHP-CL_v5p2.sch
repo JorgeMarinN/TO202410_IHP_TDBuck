@@ -10,30 +10,26 @@ T {DOUT too many 0s
 --> VCOSENS needs to  be faster by DECREASING VCONTs
 --> this is done by having more 1s in D1 (PMOS)
 --> DOUT connected to D1_N to have negative FB} 3220 -1465 0 0 0.3 0.3 {}
-N 1590 -1040 1590 -1010 {
+N 1400 -1040 1400 -1010 {
 lab=VDD}
-N 1590 -890 1590 -860 {
+N 1400 -890 1400 -860 {
 lab=VSS}
-N 1500 -950 1530 -950 {
+N 1310 -950 1340 -950 {
 lab=VCONTr}
-N 1650 -970 1680 -970 {
+N 1460 -970 1550 -970 {
 lab=V_1r}
-N 1650 -930 1680 -930 {
+N 1460 -930 1490 -930 {
 lab=V_2r}
-N 1590 -1360 1590 -1330 {
+N 1400 -1360 1400 -1330 {
 lab=VDD}
-N 1590 -1210 1590 -1180 {
+N 1400 -1210 1400 -1180 {
 lab=VSS}
-N 1500 -1270 1530 -1270 {
+N 1310 -1270 1340 -1270 {
 lab=VCONTs}
-N 1650 -1290 1680 -1290 {
+N 1460 -1290 1550 -1290 {
 lab=V_1s}
-N 1650 -1250 1680 -1250 {
+N 1460 -1250 1490 -1250 {
 lab=V_2s}
-N 1745 -1290 1785 -1290 {
-lab=V_1s_buff}
-N 1745 -970 1785 -970 {
-lab=V_1r_buff}
 N 2670 -420 2700 -420 {
 lab=#net1}
 N 2570 -420 2610 -420 {
@@ -125,6 +121,14 @@ N 2320 -340 2320 -320 {
 lab=VSS}
 N 2580 -630 2580 -610 { lab=GND}
 N 2580 -740 2580 -690 { lab=VDD_GD}
+N 1690 -1280 1770 -1280 {
+lab=V_1s_dl}
+N 1770 -1290 1770 -1280 {
+lab=V_1s_dl}
+N 1690 -960 1770 -960 {
+lab=V_1r_dl}
+N 1770 -970 1770 -960 {
+lab=V_1r_dl}
 C {devices/code_shown.sym} 3240 -1020 0 0 {name=s1 only_toplevel=false value=".param VDIG = 1.2
 .param VH = 3.3
 .param VDD_GD = 3.3
@@ -141,7 +145,8 @@ C {devices/code_shown.sym} 3240 -1020 0 0 {name=s1 only_toplevel=false value=".p
 *.param RL = 60
 *10mA
 *.param RL = 120
-.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r_buff) v(V_1s_buff) v(V_1r_buff_sp) v(V_1s_buff_sp) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
+*.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r_buff) v(V_1s_buff) v(V_1r_buff_sp) v(V_1s_buff_sp) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
+.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r) v(V_1s) v(V_1r_dl) v(V_1s_dl) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
 vvdd vdd 0 dc 3.3
 vvss vss 0 0
 vvcontr VCONTr 0 dc 0.6
@@ -156,10 +161,12 @@ vvcontr VCONTr 0 dc 0.6
 *.ic v(V_res) = 1.2
 .ic v(V_inductor) = 1.2
 
+*.option method=gear
+
 .control
 *tran 2n 1m
 *tran 4n 250u
-tran 100p 75u
+tran 100p 150u
 *wrdata /foss/designs/TO202406_CMOSVCO_Esm22/xschem/data/dataVSENS_2xCMOSVCOnDFF_v1p1.txt v(V_1s) tran1.v(V_1s) tran2.v(V_1s) tran3.v(V_1s) tran4.v(V_1s) tran5.v(V_1s) tran6.v(V_1s) tran7.v(V_1s) tran8.v(V_1s) tran9.v(V_1s) tran10.v(V_1s) tran11.v(V_1s) tran12.v(V_1s) tran13.v(V_1s) tran14.v(V_1s) tran15.v(V_1s) tran16.v(V_1s) tran17.v(V_1s) tran18.v(V_1s) tran19.v(V_1s)
 *wrdata /foss/designs/TO202406_CMOSVCO_Esm22/xschem/data/data_TDBuckTOP-CL_v5p3_RL60.txt tran.v(vh) tran.i(vh) tran.v(ldo_out) tran.i(vldo_out) tran.v(vh_gd) tran.i(vh_gd) tran.i(vvdig) tran.i(vvdd)
 plot v(ldo_out)
@@ -172,18 +179,16 @@ plot i(vldo_out)
 *plot v(VCONTs_OL)
 .endc
 "}
-C {devices/lab_pin.sym} 1590 -1040 1 0 {name=p4 sig_type=std_logic lab=VDD}
-C {devices/lab_pin.sym} 1590 -860 3 0 {name=p5 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1500 -950 1 0 {name=p6 sig_type=std_logic lab=VCONTr}
-C {devices/lab_pin.sym} 1670 -970 1 0 {name=p7 sig_type=std_logic lab=V_1r}
-C {devices/lab_pin.sym} 1680 -930 1 0 {name=p1 sig_type=std_logic lab=V_2r}
-C {devices/lab_pin.sym} 1590 -1360 1 0 {name=p2 sig_type=std_logic lab=VDD}
-C {devices/lab_pin.sym} 1590 -1180 3 0 {name=p3 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1500 -1270 1 0 {name=p8 sig_type=std_logic lab=VCONTs}
-C {devices/lab_pin.sym} 1670 -1290 1 0 {name=p9 sig_type=std_logic lab=V_1s}
-C {devices/lab_pin.sym} 1680 -1250 1 0 {name=p10 sig_type=std_logic lab=V_2s}
-C {devices/lab_pin.sym} 1785 -1290 1 0 {name=p17 sig_type=std_logic lab=V_1s_buff}
-C {devices/lab_pin.sym} 1785 -970 1 0 {name=p18 sig_type=std_logic lab=V_1r_buff}
+C {devices/lab_pin.sym} 1400 -1040 1 0 {name=p4 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 1400 -860 3 0 {name=p5 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1310 -950 1 0 {name=p6 sig_type=std_logic lab=VCONTr}
+C {devices/lab_pin.sym} 1480 -970 1 0 {name=p7 sig_type=std_logic lab=V_1r}
+C {devices/lab_pin.sym} 1490 -930 1 0 {name=p1 sig_type=std_logic lab=V_2r}
+C {devices/lab_pin.sym} 1400 -1360 1 0 {name=p2 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 1400 -1180 3 0 {name=p3 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1310 -1270 1 0 {name=p8 sig_type=std_logic lab=VCONTs}
+C {devices/lab_pin.sym} 1480 -1290 1 0 {name=p9 sig_type=std_logic lab=V_1s}
+C {devices/lab_pin.sym} 1490 -1250 1 0 {name=p10 sig_type=std_logic lab=V_2s}
 C {devices/ind.sym} 2640 -420 1 0 {name=L37
 m=1
 value=275n
@@ -290,8 +295,8 @@ model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_stdcells/sg13g2_buf_4.sym} 1435 -620 0 0 {name=x3 VDD=VDIG VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_buf_4.sym} 1720 -1290 0 0 {name=x7 VDD=VDIG VSS=VSS prefix=sg13g2_ }
-C {sg13g2_stdcells/sg13g2_buf_4.sym} 1720 -970 0 0 {name=x12 VDD=VDIG VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_buf_4.sym} 1810 -1290 0 0 {name=x7 VDD=VDIG VSS=VSS prefix=sg13g2_ }
+C {sg13g2_stdcells/sg13g2_buf_4.sym} 1810 -970 0 0 {name=x12 VDD=VDIG VSS=VSS prefix=sg13g2_ }
 C {devices/lab_pin.sym} 2005 -1060 1 0 {name=p20 sig_type=std_logic lab=VDIG}
 C {devices/lab_pin.sym} 2500 -1215 1 0 {name=p21 sig_type=std_logic lab=VDIG}
 C {devices/vsource.sym} 2580 -660 0 0 {name=VDD_GD value=\{VDD_GD\}}
@@ -316,8 +321,8 @@ value="
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym} 2005 -1290 0 0 {name=x13}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym} 2005 -970 0 0 {name=x8}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sym} 2835 -1115 0 0 {name=x1}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym} 1590 -1270 0 0 {name=x5}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym} 1590 -950 0 0 {name=x2}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym} 1400 -1270 0 0 {name=x5}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym} 1400 -950 0 0 {name=x2}
 C {devices/lab_pin.sym} 1365 -620 1 0 {name=p11 sig_type=std_logic lab=VCP}
 C {devices/lab_pin.sym} 1370 -385 1 0 {name=p13 sig_type=std_logic lab=VCN}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym} 1615 -580 0 0 {name=X9}
@@ -325,3 +330,13 @@ C {devices/lab_wire.sym} 1640 -435 0 0 {name=l10 sig_type=std_logic lab=VDIG}
 C {devices/lab_wire.sym} 1670 -335 2 0 {name=l16 sig_type=std_logic lab=VSS}
 C {devices/lab_wire.sym} 1670 -435 0 1 {name=l17 sig_type=std_logic lab=VDD_GD}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym} 1620 -345 0 0 {name=X4}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v2p1.sym} 1620 -1280 0 0 {name=x11}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v2p1.sym} 1620 -960 0 0 {name=x14}
+C {devices/lab_pin.sym} 1620 -1330 1 0 {name=p16 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 1620 -1010 1 0 {name=p17 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 1620 -1230 3 0 {name=p18 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1620 -910 3 0 {name=p19 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1550 -1270 3 0 {name=p22 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1550 -950 3 0 {name=p24 sig_type=std_logic lab=VCONTs}
+C {devices/lab_pin.sym} 1730 -1280 1 0 {name=p26 sig_type=std_logic lab=V_1s_dl}
+C {devices/lab_pin.sym} 1730 -960 1 0 {name=p29 sig_type=std_logic lab=V_1r_dl}
