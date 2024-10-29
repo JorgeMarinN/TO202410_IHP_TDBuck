@@ -19,8 +19,8 @@ C {devices/lab_pin.sym} -145 15 0 0 {name=p10 sig_type=std_logic lab=VCONT
 C {devices/lab_pin.sym} -75 -35 0 0 {name=p8 sig_type=std_logic lab=VDD}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v2p1.sym} -75 5 0 0 {name=x1}
 C {devices/lab_pin.sym} 165 45 0 0 {name=p13 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 95 15 0 0 {name=p15 sig_type=std_logic lab=VCONT
-}
 C {devices/lab_pin.sym} 165 -35 0 0 {name=p16 sig_type=std_logic lab=VDD}
 C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v2p1.sym} 165 5 0 0 {name=x2}
 C {devices/lab_pin.sym} 235 -5 2 0 {name=p9 sig_type=std_logic lab=VOUT}
+C {devices/lab_pin.sym} 95 15 0 0 {name=p11 sig_type=std_logic lab=VCONT
+}

@@ -129,6 +129,14 @@ N 1690 -960 1770 -960 {
 lab=V_1r_dl}
 N 1770 -970 1770 -960 {
 lab=V_1r_dl}
+N 2125 -1360 2125 -1310 {
+lab=#net4}
+N 2125 -1450 2125 -1420 {
+lab=VSS}
+N 2125 -1040 2125 -990 {
+lab=#net5}
+N 2125 -1130 2125 -1100 {
+lab=VSS}
 C {devices/code_shown.sym} 3240 -1020 0 0 {name=s1 only_toplevel=false value=".param VDIG = 1.2
 .param VH = 3.3
 .param VDD_GD = 3.3
@@ -145,7 +153,7 @@ C {devices/code_shown.sym} 3240 -1020 0 0 {name=s1 only_toplevel=false value=".p
 *.param RL = 60
 *10mA
 *.param RL = 120
-.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r_buff) v(V_1s_buff) v(V_1r_buff_sp) v(V_1s_buff_sp) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd) v(v_1r) v(v_1r_dl) v(v_1s) v(v_1s_dl)
+.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r) v(V_1s) v(V_1r_dl) v(V_1s_dl) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
 vvdd vdd 0 dc 3.3
 vvss vss 0 0
 vvcontr VCONTr 0 dc 0.6
@@ -160,8 +168,8 @@ vvcontr VCONTr 0 dc 0.6
 *.ic v(V_res) = 1.2
 .ic v(V_inductor) = 1.2
 
-.option GMIN=1e-18
 .option method=gear
+.option cshunt=1.3e-13
 
 .control
 *tran 2n 1m
@@ -337,6 +345,18 @@ C {devices/lab_pin.sym} 1620 -1010 1 0 {name=p17 sig_type=std_logic lab=VDD}
 C {devices/lab_pin.sym} 1620 -1230 3 0 {name=p18 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1620 -910 3 0 {name=p19 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1550 -1270 3 0 {name=p22 sig_type=std_logic lab=VSS}
+C {devices/capa.sym} 2125 -1390 2 0 {name=C1
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {devices/lab_pin.sym} 2125 -1450 1 0 {name=p26 sig_type=std_logic lab=VSS}
+C {devices/capa.sym} 2125 -1070 2 0 {name=C2
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {devices/lab_pin.sym} 2125 -1130 1 0 {name=p29 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1550 -950 3 0 {name=p24 sig_type=std_logic lab=VCONTs}
-C {devices/lab_pin.sym} 1730 -1280 1 0 {name=p26 sig_type=std_logic lab=V_1s_dl}
-C {devices/lab_pin.sym} 1730 -960 1 0 {name=p29 sig_type=std_logic lab=V_1r_dl}
+C {devices/lab_pin.sym} 1730 -1280 1 0 {name=p30 sig_type=std_logic lab=V_1s_dl}
+C {devices/lab_pin.sym} 1730 -960 1 0 {name=p32 sig_type=std_logic lab=V_1r_dl}

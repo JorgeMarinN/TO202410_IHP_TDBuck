@@ -14,7 +14,7 @@ x2 VDD VCONT VOUT1 net1 VSS VCDL_v1p1
 
 .control
    save all
-   compose vin_var start=0 stop=0.85 step=0.2
+   compose vin_var start=0.2 stop=1.05 step=0.2
    foreach val $&vin_var
       alter vcont $val
       tran 100p 120n

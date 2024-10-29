@@ -1,0 +1,93 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_VCDL_v3p1.sch
+**.subckt tb_VCDL_v3p1
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN VIN VSS PULSE(0 3.3 25n 100p 100p 50n 100n)
+VCONT VCONT GND 0
+C1 VOUT VSS 5p m=1
+VDD VDD GND 3.3
+x3 VOUT1 VCC VSS VOUT sg13g2_buf_4
+x1 VIN VCONT VOUT1 VSS VDD VCDLtop_v3p1
+**** begin user architecture code
+
+
+.control
+   save all
+   compose vin_var start=0.2 stop=1.05 step=0.2
+   foreach val $&vin_var
+      alter vcont $val
+      tran 100p 120n
+   end
+   plot tran1.V(VIN) tran1.V(VOUT) tran2.V(VOUT) tran3.V(VOUT) tran4.V(VOUT) tran5.V(VOUT)
+   plot tran1.V(VIN) tran1.V(VOUT1) tran2.V(VOUT1) tran3.V(VOUT1) tran4.V(VOUT1) tran5.V(VOUT1)
+.endc
+
+.measure tran tdelay1
++ TRIG tran1.V(VIN) TD=0u VAL=1.65 RISE=1
++ TARG tran1.V(VOUT) TD=0u VAL=0.6 RISE=1
+.measure tran tdelay2
++ TRIG tran2.V(VIN) TD=0u VAL=1.65 RISE=1
++ TARG tran2.V(VOUT) TD=0u VAL=0.6 RISE=1
+.measure tran tdelay3
++ TRIG tran3.V(VIN) TD=0u VAL=1.65 RISE=1
++ TARG tran3.V(VOUT) TD=0u VAL=0.6 RISE=1
+.measure tran tdelay4
++ TRIG tran4.V(VIN) TD=0u VAL=1.65 RISE=1
++ TARG tran4.V(VOUT) TD=0u VAL=0.6 RISE=1
+.measure tran tdelay5
++ TRIG tran5.V(VIN) TD=0u VAL=1.65 RISE=1
++ TARG tran5.V(VOUT) TD=0u VAL=0.6 RISE=1
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v3p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v3p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v3p1.sch
+.subckt VCDLtop_v3p1 VIN VCONT VOUT VSS VDD
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+x1 VDD VCONT net1 VIN VSS VCDL_v3p1
+x2 VDD VCONT VOUT net1 VSS VCDL_v3p1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v3p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v3p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v3p1.sch
+.subckt VCDL_v3p1 VDD VCONT VOUT VIN VSS
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+XM9 net4 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM3 net3 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM5 net2 net4 VSS VSS sg13_hv_nmos w=4.5u l=0.5u ng=1 m=1
+XM8 net4 VCONT VDD VDD sg13_hv_pmos w=4u l=7u ng=1 m=1
+XM4 net3 net3 VDD VDD sg13_hv_pmos w=8u l=4u ng=1 m=1
+XM6 net1 net3 VDD VDD sg13_hv_pmos w=7.5u l=4u ng=1 m=1
+XM2 VOUT VIN net1 VDD sg13_hv_pmos w=5u l=5u ng=1 m=2
+XM1 VOUT VIN net2 VSS sg13_hv_nmos w=2u l=5u ng=1 m=2
+XM7 net4 VDD VDD VDD sg13_hv_pmos w=0.4u l=7u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

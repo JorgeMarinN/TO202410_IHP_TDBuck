@@ -28,6 +28,8 @@ X9 DOUT_D1 D1 VDIG VDD_GD VSS GateDriver_AM_v1p1
 X4 DOUT_D1_N D1_N VDIG VDD_GD VSS GateDriver_AM_v1p1
 x11 V_1s VSS V_1s_dl VSS VDD VCDLtop_v2p1
 x14 V_1r VCONTs V_1r_dl VSS VDD VCDLtop_v2p1
+C1 net4 VSS 100f m=1
+C2 net5 VSS 100f m=1
 **** begin user architecture code
 
 .param VDIG = 1.2
@@ -46,7 +48,7 @@ x14 V_1r VCONTs V_1r_dl VSS VDD VCDLtop_v2p1
 *.param RL = 60
 *10mA
 *.param RL = 120
-.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r_buff) v(V_1s_buff) v(V_1r_buff_sp) v(V_1s_buff_sp) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd) v(v_1r) v(v_1r_dl) v(v_1s) v(v_1s_dl)
+.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r) v(V_1s) v(V_1r_dl) v(V_1s_dl) v(DOUT) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(VCONTs_OL) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
 vvdd vdd 0 dc 3.3
 vvss vss 0 0
 vvcontr VCONTr 0 dc 0.6
@@ -61,8 +63,8 @@ vvcontr VCONTr 0 dc 0.6
 *.ic v(V_res) = 1.2
 .ic v(V_inductor) = 1.2
 
-.option GMIN=1e-18
 .option method=gear
+.option cshunt=1.3e-13
 
 .control
 *tran 2n 1m

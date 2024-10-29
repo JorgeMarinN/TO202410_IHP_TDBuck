@@ -14,7 +14,7 @@ lab=VOUT1}
 C {devices/code_shown.sym} 20 170 0 0 {name=CODE only_toplevel=false value="
 .control
    save all
-   compose vin_var start=0 stop=0.85 step=0.2
+   compose vin_var start=0.2 stop=1.05 step=0.2
    foreach val $&vin_var
       alter vcont $val
       tran 100p 120n
