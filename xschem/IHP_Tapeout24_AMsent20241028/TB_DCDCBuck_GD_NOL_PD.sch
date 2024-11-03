@@ -265,11 +265,11 @@ value=\{VH\}}
 C {lab_pin.sym} 40 -220 0 1 {name=p21 sig_type=std_logic lab=Vs_M1}
 C {lab_pin.sym} 40 -180 0 1 {name=p22 sig_type=std_logic lab=Vs_M2}
 C {NOL_v2p2.sym} -100 -200 0 0 {name=x4}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/DCDC_Buck_V2.sym} 470 -140 0 0 {name=X1}
+C {DCDC_Buck_V2.sym} 470 -140 0 0 {name=X1}
 C {ammeter.sym} -500 -490 2 1 {name=V_Ivh savecurrent=true spice_ignore=0}
 C {ammeter.sym} -590 -490 2 1 {name=V_Ivdd savecurrent=true spice_ignore=0}
 C {ammeter.sym} -100 -290 0 0 {name=V_Inol savecurrent=true spice_ignore=0}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/PhaseDetector.sym} -410 -200 0 0 {name=x5}
+C {PhaseDetector.sym} -410 -200 0 0 {name=x5}
 C {lab_pin.sym} -410 -330 0 0 {name=p7 sig_type=std_logic lab=Vdd}
 C {gnd.sym} -410 -110 0 0 {name=l5 lab=GND
 value=\{VH\}}
@@ -318,5 +318,5 @@ value="
 
 
 "}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/GateDriverV2.sym} 130 -230 0 0 {name=X2}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/GateDriverV2.sym} 130 20 0 0 {name=X3}
+C {GateDriverV2.sym} 130 -230 0 0 {name=X2}
+C {GateDriverV2.sym} 130 20 0 0 {name=X3}

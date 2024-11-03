@@ -183,7 +183,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 230 20 0 0 {name=M2
 l=5u
-w=2.5u
+w=5u
 ng=1
 m=1
 model=sg13_hv_pmos
@@ -191,7 +191,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 230 130 2 1 {name=M1
 l=5u
-w=1u
+w=2u
 ng=1
 m=1
 model=sg13_hv_nmos

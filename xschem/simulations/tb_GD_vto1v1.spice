@@ -1,0 +1,199 @@
+** sch_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/GD/tb_GD_vto1v1.sch
+**.subckt tb_GD_vto1v1
+X1 Vs_M1 Vg_M1 Vdd VH GND GD_vto1p1
+Vdd net5 GND {Vdd}
+Vs Vs_M1 GND PULSE(0 {Vdd} {Del} {1p} {1p} {T*D} {T} 0)
+Vdd1 net6 GND {VH}
+XM2 Vc2 net2 GND GND sg13_hv_nmos w={w_M2} l={l_M2} ng={ng_M2} m={mult_M2}
+XM1 Vc1 net1 VHH VHH sg13_hv_pmos w={w_M1} l={l_M1} ng={ng_M1} m={mult_M1}
+VdM2 VHH net3 0
+.save i(vdm2)
+VdM1 net4 GND 0
+.save i(vdm1)
+Vg1 Vs_M2 GND PULSE(0 {Vdd} {TdR+Del} {1n} {1n} {T*D-TdR-TdF} {T} 0)
+R1 net3 Vc2 {R} m=1
+R2 Vc1 net4 {R} m=1
+X2 Vs_M2 Vg_M2 Vdd VH GND GD_vto1p1
+V_IgM1 Vg_M1 net1 0
+.save i(v_igm1)
+V_IgM2 Vg_M2 net2 0
+.save i(v_igm2)
+Vdd2 VHH GND {VH}
+V_Igd_Vdd net5 Vdd 0
+.save i(v_igd_vdd)
+V_Igd_VH net6 VH 0
+.save i(v_igd_vh)
+**** begin user architecture code
+
+.lib cornerMOShv.lib mos_tt
+.lib cornerMOSlv.lib mos_tt
+
+
+
+.param Vdd = 1.2
+.param VH = 3.3
+
+*.param T = 1u
+*.param TdR = 0.1u
+*.param TdF = 0.1u
+
+.param D = 0.5
+.param T = 0.1u
+.param TdR = 1n
+.param TdF = 1n
+.param TR = 10n
+.param TF = 10n
+.param Del = 0.05u
+
+.param R = 3.3
+
+.param temp = 27
+
+
+
+
+
+
+.save all
+.control
+reset
+set color0 = white
+tran 1n 1u
+
+let VsdM1 = v(VH) - v(Vc1)
+let VdsM2 = v(Vc2)
+let P_GD_Vdd = i(V_Igd_Vdd)*v(Vdd)
+let P_GD_VH = i(V_Igd_VH)*v(VH)
+
+plot i(VdM1) i(VdM2)
+plot v(Vc1) v(Vc2)
+plot v(Vg_M1) v(Vg_M2)
+plot VsdM1 VdsM2
+plot v(Vs_M1) v(Vs_M2)
+*plot v(x1.VgMD2)
+*plot v(x1.VgMD5)
+*plot v(x1.VgMD78)
+
+plot i(V_IgM1) i(V_IgM2)
+plot i(x1.VIg78)
+*plot v(x2.VgMD2)
+*plot v(x2.VgMD5)
+*plot v(x2.VgMD78)
+
+meas tran P_GD_Vdd_mean AVG P_GD_Vdd from=0.5u to=1u
+meas tran P_GD_VH_mean AVG P_GD_VH from=0.5u to=1u
+
+let P_GD = P_GD_Vdd_mean + P_GD_VH_mean
+
+meas TRAN td_off_M1 TRIG v(Vg_M1) VAL=0.33 RISE=1 TARG VsdM1 VAL=0.33 RISE=1
+meas TRAN td_on_M1 TRIG v(Vg_M1) VAL=2.97 FALL=1 TARG VsdM1 VAL=2.97 FALL=1
+meas TRAN td_on_M2 TRIG v(Vg_M2) VAL=0.33 RISE=1 TARG VdsM2 VAL=2.97 FALL=1
+meas TRAN td_off_M2 TRIG v(Vg_M2) VAL=2.97 FALL=1 TARG VdsM2 VAL=0.33 RISE=1
+
+meas TRAN tPdR1 TRIG v(Vs_M1) VAL=0.12 RISE=1 TARG v(Vg_M1) VAL=0.33 RISE=1
+meas TRAN tPdF1 TRIG v(Vs_M1) VAL=1.08 FALL=1 TARG v(Vg_M1) VAL=2.97 FALL=1
+*meas TRAN tPdR1 TRIG v(Vg_M2) VAL=2.97 FALL=1 TARG VdsM2 VAL=0.33 RISE=1
+*meas TRAN tPdR1 TRIG v(Vg_M2) VAL=2.97 FALL=1 TARG VdsM2 VAL=0.33 RISE=1
+let TdR = td_off_M1 - td_on_M2
+let TdF = td_on_M1 - td_off_M2
+print TdR TdF P_GD
+
+
+.endc
+
+.end
+
+
+
+
+.param temp=27
+
+*.param mult_13 = 1
+*.param mult_24 = 6
+*.param mult_5 = 100
+*.param mult_6 = 100
+*.param mult_7 = 200
+*.param mult_8 = 200
+*.param mult_9 = 5
+*.param mult_10 = 5
+
+.param mult_13 = 1
+.param mult_24 = 6
+.param mult_5 = 30
+.param mult_6 = 25
+.param mult_7 = 250
+.param mult_8 = 200
+.param mult_9 = 15
+.param mult_10 = 15
+*.param mult_5 = 25
+*.param mult_6 = 25
+*.param mult_7 = 75
+*.param mult_8 = 60
+
+.param ng_13 = 1
+.param ng_24 = 1
+.param ng_5 = 1
+.param ng_6 = 1
+.param ng_7 = 1
+.param ng_8 = 1
+.param ng_9 = 1
+.param ng_10 = 1
+
+*.param w_1357 = 0.3u
+*.param w_2468 = 0.3u
+
+.param l_1357 = 0.4u
+.param w_1357 = 10u
+.param l_2468 = 0.45u
+.param w_2468 = 10u
+.param l_9 = 0.13u
+.param w_9 = 0.15u
+.param l_10 = 0.13u
+.param w_10 = 0.15u
+
+
+
+
+
+
+.param temp=27
+.param mult_M1 = 12000
+.param w_M1 =10u
+.param l_M1 = 0.4u
+.param ng_M1 = 1
+
+.param mult_M2 = 4000
+.param w_M2 =10u
+.param l_M2 =0.45u
+.param ng_M2 =1
+
+
+
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  GD_vto1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/GD/GD_vto1p1.sym
+** sch_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/GD/GD_vto1p1.sch
+.subckt GD_vto1p1 Vs Vg Vdd VH GND
+*.iopin VH
+*.iopin Vdd
+*.ipin Vs
+*.opin Vg
+*.iopin GND
+XMD9 VgMD2 Vs Vdd Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=15
+XMD10 VgMD2 Vs GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=15
+XMD1 VgMD5 net1 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=1
+XMD3 net1 VgMD5 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=1
+XMD5 VgMd78 VgMD5 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=30
+XMD7 Vg VgMd78 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=250
+XMD2 VgMD5 VgMD2 GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=6
+XMD4 net1 Vs GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=6
+XMD6 VgMd78 Vs GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=25
+XMD8 Vg VgMd78 GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=200
+.ends
+
+.GLOBAL GND
+.end

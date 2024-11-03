@@ -52,10 +52,10 @@ C {devices/lab_pin.sym} 30 -20 0 1 {name=p10 sig_type=std_logic lab=V_PWM}
 C {sg13g2_stdcells/sg13g2_nor2_1.sym} -160 -160 0 0 {name=x3 VDD=VCC VSS=VSS prefix=sg13g2_ }
 C {sg13g2_stdcells/sg13g2_nor2_1.sym} -160 -20 0 0 {name=x1 VDD=VCC VSS=VSS prefix=sg13g2_ }
 C {devices/iopin.sym} 200 -30 0 0 {name=p2 lab=V_PWM}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/Short_Pulse_Generator.sym} -560 -200 0 0 {name=x2}
+C {Short_Pulse_Generator.sym} -560 -200 0 0 {name=x2}
 C {devices/lab_pin.sym} -560 -120 0 0 {name=p13 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} -700 50 0 0 {name=p16 sig_type=std_logic lab=VINS}
-C {/home/designer/shared/simulations/IHP-sg13g2/Simulaciones/IHP_Tapeout24/Short_Pulse_Generator.sym} -550 50 0 0 {name=x4}
+C {Short_Pulse_Generator.sym} -550 50 0 0 {name=x4}
 C {devices/lab_pin.sym} -550 130 0 0 {name=p17 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} -550 -30 0 0 {name=p18 sig_type=std_logic lab=VCC}
 C {devices/lab_pin.sym} -710 -200 0 0 {name=p20 sig_type=std_logic lab=VINR}

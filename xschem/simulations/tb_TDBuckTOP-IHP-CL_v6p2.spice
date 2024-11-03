@@ -1,0 +1,284 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_TDBuckTOP-IHP-CL_v6p2.sch
+**.subckt tb_TDBuckTOP-IHP-CL_v6p2
+L37 net1 V_inductor 275n m=1
+R3 V_inductor V_res 0 m=1
+V_res net1 ldo_out 0
+VH VH GND {VH}
+VVDIG VDIG GND {VDIG}
+C4 ldo_out VSS 32n m=1
+RL net2 GND {RL} m=1
+Vldo_out ldo_out net2 0
+RDIV1 ldo_out VCONTs 100e6 m=1
+RDIV2 VCONTs net3 50e6 m=1
+x10 VDIG VSS V_1r_buff_sp DOUT V_1s_buff_sp SRlatch_NOR
+RDIV3 net3 GND 50e6 m=1
+x6 VCN VDIG VSS DOUT_D1_N sg13g2_buf_4
+XM1 V_res D1 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=12000
+XM2 VSS D1_N V_res VSS sg13_hv_nmos w=10u l=0.45u ng=1 m=4000
+x3 VCP VDIG VSS DOUT_D1 sg13g2_buf_4
+x7 V_1s_dl VDIG VSS V_1s_buff sg13g2_buf_4
+x12 V_1r_dl VDIG VSS V_1r_buff sg13g2_buf_4
+VDD_GD VDD_GD GND {VDD_GD}
+x13 VDIG VSS net5 V_1s_buff V_1s_buff_sp short_pulse_generatorRC_v1p1
+x8 VDIG VSS net4 V_1r_buff V_1r_buff_sp short_pulse_generatorRC_v1p1
+x1 VDIG VSS VCP DOUT VCN NOLRC2ns_v1p1
+x5 VCONTs VSS VDD V_1s V_2s Esm22_CMOSVCOlowG_v6p1_IHP
+x2 VCONTr VSS VDD V_1r V_2r Esm22_CMOSVCOlowG_v6p1_IHP
+X9 DOUT_D1 D1 VDIG VDD_GD VSS GateDriver_AM_v1p1
+X4 DOUT_D1_N D1_N VDIG VDD_GD VSS GateDriver_AM_v1p1
+C1 net4 VSS 100f m=1
+C2 net5 VSS 100f m=1
+x11 V_1s VCONTr V_1s_dl VSS VDD VCDLtop_v5p1
+x14 V_1r VCONTr V_1r_dl VSS VDD VCDLtop_v5p1
+**** begin user architecture code
+
+.param VDIG = 1.2
+.param VH = 3.3
+.param VDD_GD = 3.3
+*LATEST TDBuckLOADS
+*1000mA
+*.param RL = 1.2
+*100mA
+.param RL = 12
+*80mA
+*.param RL = 15
+*40mA
+*.param RL = 30
+*20mA
+*.param RL = 60
+*10mA
+*.param RL = 120
+.save v(ldo_out) v(v_res) v(D1) v(D1_N) v(DOUT) v(VCONTr) v(VCONTs) v(V_1r) v(V_1s) v(V_1r_dl) v(V_1s_dl) v(V_1r_buff) v(V_1s_buff) v(V_1r_buff_sp) v(V_1s_buff_sp) v(vh) i(vh) v(vdd_gd) i(vdd_gd) i(v_res) v(vcp) v(vcn) i(vldo_out) i(vvdig) i(vvdd)
+vvdd vdd 0 dc 3.3
+vvss vss 0 0
+vvcontr VCONTr 0 dc 0.6
+*vvconts VCONTs 0 dc 0.61
+*.option temp = 200
+.ic v(VCONTs) = 0.6
+.ic v(V_1s) = 0
+.ic v(V_2s) = 3.3
+.ic v(V_1r) = 3.3
+.ic v(V_2r) = 0
+.ic v(ldo_out) = 1.2
+*.ic v(V_res) = 1.2
+.ic v(V_inductor) = 1.2
+
+.option method=gear
+.option cshunt=0.01e-12
+
+.control
+*tran 2n 1m
+*tran 4n 250u
+tran 100p 75u
+*wrdata /foss/designs/TO202406_CMOSVCO_Esm22/xschem/data/dataVSENS_2xCMOSVCOnDFF_v1p1.txt v(V_1s) tran1.v(V_1s) tran2.v(V_1s) tran3.v(V_1s) tran4.v(V_1s) tran5.v(V_1s) tran6.v(V_1s) tran7.v(V_1s) tran8.v(V_1s) tran9.v(V_1s) tran10.v(V_1s) tran11.v(V_1s) tran12.v(V_1s) tran13.v(V_1s) tran14.v(V_1s) tran15.v(V_1s) tran16.v(V_1s) tran17.v(V_1s) tran18.v(V_1s) tran19.v(V_1s)
+*wrdata /foss/designs/TO202406_CMOSVCO_Esm22/xschem/data/data_TDBuckTOP-CL_v5p3_RL60.txt tran.v(vh) tran.i(vh) tran.v(ldo_out) tran.i(vldo_out) tran.v(vh_gd) tran.i(vh_gd) tran.i(vvdig) tran.i(vvdd)
+plot v(ldo_out)
+plot v(v_res)
+plot v(D1) v(D1_N) i(VH)
+plot v(DOUT)
+plot v(VCONTr) v(VCONTs)
+plot v(V_1r_buff) v(V_1s_buff)+2 v(DOUT)+4
+plot i(vldo_out)
+*plot v(VCONTs_OL)
+.endc
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  SRlatch_NOR.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/SRlatch_NOR.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/SRlatch_NOR.sch
+.subckt SRlatch_NOR VCC VSS VINS V_PWM VINR
+*.iopin VINS
+*.iopin V_PWM
+*.iopin VCC
+*.iopin VSS
+*.iopin VINR
+x3 VINS V_PWM VCC VSS V_N sg13g2_nor2_1
+x1 V_N VINR VCC VSS V_PWM sg13g2_nor2_1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sch
+.subckt short_pulse_generatorRC_v1p1 VCC VSS VFE VIN VRE
+*.iopin VIN
+*.iopin VFE
+*.iopin VRE
+*.iopin VCC
+*.iopin VSS
+x10 VCC VSS V_gatein dly7 large_delayRC_v1p1
+x1 dly7 VCC VSS dly8 sg13g2_inv_1
+x2 predly VCC VSS net2 sg13g2_inv_1
+x3 net3 VCC VSS predly sg13g2_inv_1
+x4 dly8 VCC VSS net1 sg13g2_inv_1
+x5 VIN VCC VSS net3 sg13g2_inv_2
+x6 predly VCC VSS V_gatein sg13g2_inv_8
+x7 net2 dly8 VCC VSS VFE sg13g2_and2_2
+x8 net1 predly VCC VSS VRE sg13g2_and2_2
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sch
+.subckt NOLRC2ns_v1p1 VCC VSS VCP CLK VCN
+*.iopin CLK
+*.iopin VCP
+*.iopin VCN
+*.iopin VCC
+*.iopin VSS
+x5 CLK VCC VSS net1 sg13g2_inv_1
+x3 net1 net4 VCC VSS net2 sg13g2_nor2_1
+x1 net5 CLK VCC VSS net3 sg13g2_nor2_1
+x2 net4 VCC VSS net8 sg13g2_inv_1
+x6 net5 VCC VSS net6 sg13g2_inv_2
+x7 net8 VCC VSS net7 sg13g2_inv_2
+x8 net6 VCC VSS VCN sg13g2_inv_4
+x9 net7 VCC VSS VCP sg13g2_inv_4
+x10 VCC VSS net2 net5 delayRC2ns_v1p1
+x4 VCC VSS net3 net4 delayRC2ns_v1p1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p1_IHP.sch
+.subckt Esm22_CMOSVCOlowG_v6p1_IHP VCONT VSS VDD V_1 V_2
+*.ipin VCONT
+*.iopin VDD
+*.iopin VSS
+*.opin V_1
+*.opin V_2
+x1 VDD VCONT V_1 V_5 VSS stage_v6p1_IHP
+x2 VDD VCONT V_2 V_1 VSS stage_v6p1_IHP
+x3 VDD VCONT V_3 V_2 VSS stage_v6p1_IHP
+x4 VDD VCONT V_4 V_3 VSS stage_v6p1_IHP
+x5 VDD VCONT V_5 V_4 VSS stage_v6p1_IHP
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sch
+.subckt GateDriver_AM_v1p1 Vs Vg Vdd VH GND
+*.iopin VH
+*.iopin Vdd
+*.ipin Vs
+*.opin Vg
+*.iopin GND
+XMD9 VgMD2 Vs Vdd Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=15
+XMD10 VgMD2 Vs GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=15
+XMD1 VgMD5 net1 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=1
+XMD3 net1 VgMD5 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=1
+XMD5 VgMd78 VgMD5 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=30
+XMD7 Vg VgMd78 VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=250
+XMD2 VgMD5 VgMD2 GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=6
+XMD4 net1 Vs GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=6
+XMD6 VgMd78 Vs GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=25
+XMD8 Vg VgMd78 GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=200
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v5p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v5p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v5p1.sch
+.subckt VCDLtop_v5p1 VIN VCONT VOUT VSS VDD
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+x1 VDD VCONT net1 VIN VSS VCDL_v5p1
+x2 VDD VCONT VOUT net1 VSS VCDL_v5p1
+.ends
+
+
+* expanding   symbol:  large_delayRC_v1p1.sym # of pins=4
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/large_delayRC_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/large_delayRC_v1p1.sch
+.subckt large_delayRC_v1p1 VCC VSS VIN VOUT
+*.iopin VIN
+*.iopin VOUT
+*.iopin VCC
+*.iopin VSS
+x1 VIN VCC VSS net1 sg13g2_dlygate4sd3_1
+x2 net1 VCC VSS VOUT sg13g2_dlygate4sd3_1
+C1 net1 VSS 1.5p m=1
+C2 VOUT VSS 1.5p m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym # of pins=4
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sch
+.subckt delayRC2ns_v1p1 VCC VSS VIN VOUT
+*.iopin VIN
+*.iopin VOUT
+*.iopin VCC
+*.iopin VSS
+x1 VIN VCC VSS net1 sg13g2_dlygate4sd3_1
+x2 net1 VCC VSS VOUT sg13g2_dlygate4sd3_1
+C1 net1 VSS 0.15p m=1
+C2 VOUT VSS 0.15p m=1
+.ends
+
+
+* expanding   symbol:  stage_v6p1_IHP.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/stage_v6p1_IHP.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/stage_v6p1_IHP.sch
+.subckt stage_v6p1_IHP VDD VCONT VOUT VIN VSS
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+XM9 net4 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM3 net3 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM5 net2 net4 VSS VSS sg13_hv_nmos w=3u l=0.5u ng=1 m=1
+XM8 net4 VCONT VDD VDD sg13_hv_pmos w=1u l=7u ng=1 m=1
+XM4 net3 net3 VDD VDD sg13_hv_pmos w=8u l=4u ng=1 m=1
+XM6 net1 net3 VDD VDD sg13_hv_pmos w=5u l=4u ng=1 m=1
+XM2 VOUT VIN net1 VDD sg13_hv_pmos w=5u l=5u ng=1 m=1
+XM1 VOUT VIN net2 VSS sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM7 net4 VSS VDD VDD sg13_hv_pmos w=3u l=7u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v5p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v5p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDL_v5p1.sch
+.subckt VCDL_v5p1 VDD VCONT VOUT VIN VSS
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+XM9 net4 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM3 net3 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM5 net2 net4 VSS VSS sg13_hv_nmos w=3u l=0.5u ng=1 m=1
+XM8 net4 VCONT VDD VDD sg13_hv_pmos w=10u l=7u ng=1 m=1
+XM4 net3 net3 VDD VDD sg13_hv_pmos w=8u l=4u ng=1 m=1
+XM6 net1 net3 VDD VDD sg13_hv_pmos w=5u l=4u ng=1 m=1
+XM2 VOUT VIN net1 VDD sg13_hv_pmos w=2.5u l=5u ng=1 m=1
+XM1 VOUT VIN net2 VSS sg13_hv_nmos w=1u l=5u ng=1 m=1
+XM7 net4 VDD VDD VDD sg13_hv_pmos w=0.5u l=7u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

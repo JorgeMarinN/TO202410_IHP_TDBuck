@@ -1,0 +1,18 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/stage_v6p2_IHP.sch
+**.subckt stage_v6p2_IHP VDD VCONT VOUT VIN VSS
+*.ipin VIN
+*.opin VOUT
+*.iopin VDD
+*.iopin VSS
+*.ipin VCONT
+XM9 net4 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM3 net3 net4 VSS VSS sg13_hv_nmos w=5u l=0.5u ng=1 m=1
+XM5 net2 net4 VSS VSS sg13_hv_nmos w=3u l=0.5u ng=1 m=1
+XM8 net4 VCONT VDD VDD sg13_hv_pmos w=0.8u l=7u ng=1 m=1
+XM4 net3 net3 VDD VDD sg13_hv_pmos w=8u l=4u ng=1 m=1
+XM6 net1 net3 VDD VDD sg13_hv_pmos w=5u l=4u ng=1 m=1
+XM2 VOUT VIN net1 VDD sg13_hv_pmos w=5u l=5u ng=1 m=1
+XM1 VOUT VIN net2 VSS sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM7 net4 VSS VDD VDD sg13_hv_pmos w=3.2u l=7u ng=1 m=1
+**.ends
+.end

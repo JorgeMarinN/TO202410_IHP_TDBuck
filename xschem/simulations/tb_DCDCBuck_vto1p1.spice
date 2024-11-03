@@ -1,0 +1,168 @@
+** sch_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/DCDCBuck/tb_DCDCBuck_vto1p1.sch
+**.subckt tb_DCDCBuck_vto1p1
+X1 Vg_M1 Vg_M2 net1 net4 Vc DCDCBuck_vto1p1
+Vdd Vdd GND {Vdd}
+Vg2 Vg_M2 GND PULSE(0 {VH} {TdR} {TR} {TF} {T*D-TdR-TdF} {T} 0)
+Vg1 Vg_M1 GND PULSE(0 {VH} 0 {TR} {TF} {T*D} {T} 0)
+V_Iin Vdd net1 0
+.save i(v_iin)
+L1 net3 net2 {L} m=1
+C1 net2 GND {C} m=1
+V_Io net2 Vo 0
+.save i(v_io)
+R1 Vo GND {R} m=1
+V_IL Vc net3 0
+.save i(v_il)
+**** begin user architecture code
+
+
+*M1 hvPMOS
+.param temp=27
+.param mult_M1 = 12000
+.param w_M1 =10u
+.param l_M1 = 0.4u
+.param ng_M1 = 1
+
+*M2 hvNMOS
+.param mult_M2 = 4000
+.param w_M2 =10u
+.param l_M2 =0.45u
+.param ng_M2 =1
+
+
+
+
+
+
+
+
+.param Vdd = 3.3
+.param VH = 3.3
+.param Del = 0
+
+*.param D = 0.42
+*.param T = 1u
+*.param TR = 7n
+*.param TF = 7n
+*.param TdR = 0.1u
+*.param TdF = 0.1u
+
+*.param D = 0.6364
+.param D = 0.615
+.param T = 0.1u
+.param TR = 1n
+.param TF = 1n
+.param TdR = 1n
+.param TdF = 1n
+
+.param temp = 27
+
+
+
+
+.lib cornerMOShv.lib mos_tt
+
+
+
+*Parametros
+*Filtro
+*.param L = 1.37u
+*.param R = 0.9
+*.param C = 416n
+
+* Io=2A 10MHz
+*.param L = 137.5n
+*.param R = 0.6
+*.param C = 62.5n
+
+* Io=1A 10MHz
+.param L = 275n
+.param R = 1.2
+.param C = 31.25n
+
+
+
+
+
+.save all
++ @n.x1.xm1.nsg13_hv_pmos[ids]
++ @n.x1.xm2.nsg13_hv_nmos[ids]
+.param SimTime = 5u
+
+.control
+reset
+set color0 = white
+tran 1n 5u
+let Io = i(V_Io)
+let Id_M1 = @n.x1.xm1.nsg13_hv_pmos[ids]
+let Id_M2 = @n.x1.xm2.nsg13_hv_nmos[ids]
+let gds_M1 = @n.x1.xm1.nsg13_hv_pmos[gds]
+let gds_M2 = @n.x1.xm2.nsg13_hv_nmos[gds]
+let Po = Io*v(Vo)
+let I_in = i(V_Iin)
+let Pin = I_in*v(Vdd)
+let Vsd_M1 = v(Vdd) - v(Vc)
+let Vds_M2 = v(Vc)
+let P_M1 = Vsd_M1*Id_M1
+let P_M2 = -Vds_M2*Id_M2
+let Ron_M1 = Vsd_M1/Id_M1
+let Ron_M2 = Vds_M2/Id_M2
+*let Ron_M1 = 1/gds_M1
+*let Ron_M2 = 1/gds_M2
+
+let DataMeasBegin = SimTime-1u
+
+meas tran Vo_mean AVG v(Vo) from=4u to=5u
+meas tran Io_mean AVG Io from=4u to=5u
+meas tran Irms_M1 RMS Id_M1 from=4u to=5u
+meas tran Irms_M2 RMS Id_M2 from=4u to=5u
+meas tran Po_mean AVG Po from=4u to=5u
+meas tran Pin_mean AVG Pin from=4u to=5u
+meas tran P_M1_mean AVG P_M1 from=4u to=5u
+meas tran P_M2_mean AVG P_M2 from=4u to=5u
+
+let eff = 100*Po_mean/Pin_mean
+let loss_M1 = 100*P_M1_mean/Pin_mean
+let loss_M2 = 100*P_M2_mean/Pin_mean
+let cond_loss_M1 = Irms_M1*Irms_M1*40m*100
+let cond_loss_M2 = Irms_M2*Irms_M2*35m*100
+let sumaPot = eff+loss_M1+loss_M2
+print eff loss_M1 loss_M2 cond_loss_M1 cond_loss_M2 sumaPot
+
+plot Io i(V_IL)
+plot Id_M1 Id_M2
+plot v(Vo)
+plot Po Pin
+*plot P_M1 P_M2
+plot v(Vc)
+plot v(Vg_M1) v(Vg_M2)
+plot Ron_M1 Ron_M2
+write TB_DCDCBuck.raw
+.endc
+
+
+
+.end
+
+
+
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  DCDCBuck_vto1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/DCDCBuck/DCDCBuck_vto1p1.sym
+** sch_path: /home/designer/shared/TORepo_IHPNov2024_TDBuck/design_data/xschem/DCDCBuck/DCDCBuck_vto1p1.sch
+.subckt DCDCBuck_vto1p1 VgM1 VgM2 Vin GND Vo
+*.iopin Vin
+*.ipin VgM1
+*.ipin VgM2
+*.iopin Vo
+*.iopin GND
+XM2 Vo VgM2 GND GND sg13_hv_nmos w={w_M2} l={l_M2} ng={ng_M2} m={mult_M2}
+XM1 Vo VgM1 Vin Vin sg13_hv_pmos w={w_M1} l={l_M1} ng={ng_M1} m={mult_M1}
+.ends
+
+.GLOBAL GND
+.end
