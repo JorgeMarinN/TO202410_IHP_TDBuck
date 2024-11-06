@@ -1,5 +1,5 @@
-** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_TDBuckTOP-IHP-CL_v6p6.sch
-**.subckt tb_TDBuckTOP-IHP-CL_v6p6
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_TDBuckTOP-IHP-CL_v7p1.sch
+**.subckt tb_TDBuckTOP-IHP-CL_v7p1
 L37 net1 V_inductor 275n m=1
 R3 V_inductor V_res 0 m=1
 V_res net1 ldo_out 0
@@ -28,9 +28,11 @@ X9 DOUT_D1 D1 VDIG VDD_GD VSS GateDriver_AM_v1p1
 X4 DOUT_D1_N D1_N VDIG VDD_GD VSS GateDriver_AM_v1p1
 C1 net4 VSS 100f m=1
 C2 net5 VSS 100f m=1
-x11 V_1s VCONTr V_1s_dl VSS VDD VCDLtop_v5p1
-x14 V_1r VCONTr V_1r_dl VSS VDD VCDLtop_v5p1
+x11 V_1s VCONTr net6 VSS VDD VCDLtop_v5p1
+x14 V_1r VCONTr net7 VSS VDD VCDLtop_v5p1
 V2 VCONTr VSS pulse 0.6 0.9 75u 1u 1u 75u 150u
+X15 net6 V_1s_dl VDIG VH VSS LevelShifter_HL_v1p1
+X16 net7 V_1r_dl VDIG VH VSS LevelShifter_HL_v1p1
 **** begin user architecture code
 
 .param VDIG = 1.2
@@ -207,6 +209,24 @@ XMD8 Vg VgMd78 GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=200
 *.ipin VCONT
 x1 VDD VCONT net1 VIN VSS VCDL_v5p1
 x2 VDD VCONT VOUT net1 VSS VCDL_v5p1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sch
+.subckt LevelShifter_HL_v1p1 Vs Vg Vdd VH GND
+*.iopin VH
+*.iopin Vdd
+*.ipin Vs
+*.opin Vg
+*.iopin GND
+XMD9 net1 Vg Vdd Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=5
+XMD10 net1 Vs GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=5
+XMD5 VgMD2 Vs VH VH sg13_hv_pmos w=10u l=0.4u ng=1 m=1
+XMD6 VgMD2 Vs GND GND sg13_hv_nmos w=10u l=0.45u ng=1 m=1
+XMD1 Vg net1 Vdd Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=5
+XMD2 Vg VgMD2 GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=5
 .ends
 
 

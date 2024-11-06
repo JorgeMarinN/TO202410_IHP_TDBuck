@@ -159,7 +159,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} -280 -90 0 0 {name=M8
 l=7u
-w=0.4u
+w=0.7u
 ng=1
 m=1
 model=sg13_hv_pmos
@@ -199,7 +199,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} -150 -90 0 0 {name=M7
 l=7u
-w=3.6u
+w=3.3u
 ng=1
 m=1
 model=sg13_hv_pmos

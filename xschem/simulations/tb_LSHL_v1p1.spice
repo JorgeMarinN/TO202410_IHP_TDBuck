@@ -1,0 +1,61 @@
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/tb_LSHL_v1p1.sch
+**.subckt tb_LSHL_v1p1
+VCC VCC GND 1.2
+VSS VSS GND 0
+VIN VIN VSS PULSE(0 3.3 3u 100p 100p 12u 24u)
+C1 VOUT VSS 10f m=1
+X1 VIN VOUT VCC VH VSS LevelShifter_HL_v1p1
+VCC1 VH GND 3.3
+**** begin user architecture code
+
+
+.option scale=1e-6
+.save v(vin) v(vout)
+.control
+tran 100p 6u
+plot v(vin) v(vout)
+plot v(vin) v(vout)+2
+.endc
+
+.measure tran tdelay
++ TRIG tran1.V(VIN) TD=0u VAL=0.6 RISE=1
++ TARG tran1.V(VOUT) TD=0u VAL=0.6 RISE=1
+
+
+
+
+
+
+.param corner=0
+
+.if (corner==0)
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOShv.lib mos_tt
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerRES.lib res_typ
+.lib /opt/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.endif
+
+.include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym # of pins=5
+** sym_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym
+** sch_path: /home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sch
+.subckt LevelShifter_HL_v1p1 Vs Vg Vdd VH GND
+*.iopin VH
+*.iopin Vdd
+*.ipin Vs
+*.opin Vg
+*.iopin GND
+XMD9 net1 Vg Vdd Vdd sg13_lv_pmos w=1u l=0.13u ng=1 m=2
+XMD10 net1 Vs GND GND sg13_lv_nmos w=1u l=0.13u ng=1 m=1
+XMD5 VgMD2 Vs VH VH sg13_hv_pmos w=1u l=0.4u ng=1 m=2
+XMD6 VgMD2 Vs GND GND sg13_hv_nmos w=1u l=0.45u ng=1 m=1
+XMD1 Vg net1 Vdd Vdd sg13_lv_pmos w=1u l=0.13u ng=1 m=2
+XMD2 Vg VgMD2 GND GND sg13_lv_nmos w=1u l=0.13u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end
