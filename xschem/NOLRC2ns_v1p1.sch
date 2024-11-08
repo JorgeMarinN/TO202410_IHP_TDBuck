@@ -85,5 +85,5 @@ C {sg13g2_stdcells/sg13g2_inv_2.sym} 1330 -500 0 0 {name=x6 VDD=VCC VSS=VSS pref
 C {sg13g2_stdcells/sg13g2_inv_2.sym} 1330 -400 0 0 {name=x7 VDD=VCC VSS=VSS prefix=sg13g2_ }
 C {sg13g2_stdcells/sg13g2_inv_4.sym} 1430 -500 0 0 {name=x8 VDD=VCC VSS=VSS prefix=sg13g2_ }
 C {sg13g2_stdcells/sg13g2_inv_4.sym} 1430 -400 0 0 {name=x9 VDD=VCC VSS=VSS prefix=sg13g2_ }
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym} 560 -520 0 0 {name=x10}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/delayRC2ns_v1p1.sym} 560 -380 0 0 {name=x4}
+C {delayRC2ns_v1p1.sym} 560 -520 0 0 {name=x10}
+C {delayRC2ns_v1p1.sym} 560 -380 0 0 {name=x4}
