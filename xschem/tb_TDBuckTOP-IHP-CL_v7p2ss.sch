@@ -144,9 +144,9 @@ C {devices/code_shown.sym} 3240 -1020 0 0 {name=s1 only_toplevel=false value=".p
 .param VDD_GD = 3.3
 *LATEST TDBuckLOADS
 *1000mA
-*.param RL = 1.2
+.param RL = 1.2
 *100mA
-.param RL = 12
+*.param RL = 12
 *80mA
 *.param RL = 15
 *40mA
@@ -177,7 +177,8 @@ vvss vss 0 0
 *tran 2n 1m
 *tran 4n 250u
 tran 100p 150u
-*wrdata /home/designer/shared/TO202410_IHP_TDBuck/xschem/data/data_TDBuckTOP-IHP-CL_v7p1_TEST.txt tran.v(ldo_out) tran.i(vldo_out) tran.i(vh) tran.i(vdd_gd) tran.i(vvdig) tran.i(vvdd)
+*wrdata /home/designer/shared/TO202410_IHP_TDBuck/xschem/data/data_TDBuckTOP-IHP-CL_v7p2_TEST.txt tran.v(ldo_out) tran.i(vldo_out) tran.i(vh) tran.i(vdd_gd) tran.i(vvdig) tran.i(vvdd)
+plot v(ldo_out)
 plot v(v_res)
 plot v(D1) v(D1_N) i(VH)
 plot v(DOUT)
@@ -318,8 +319,8 @@ value="
 .param corner=0
 
 .if (corner==0)
-.lib $::SG13G2_MODELS/cornerMOSlv.lib mos_tt
-.lib $::SG13G2_MODELS/cornerMOShv.lib mos_tt
+.lib $::SG13G2_MODELS/cornerMOSlv.lib mos_ss
+.lib $::SG13G2_MODELS/cornerMOShv.lib mos_ss
 .lib $::SG13G2_MODELS/cornerRES.lib res_typ
 .lib $::SG13G2_MODELS/cornerCAP.lib cap_typ
 .endif
@@ -363,10 +364,8 @@ C {devices/lab_pin.sym} 1340 -920 3 0 {name=p32 sig_type=std_logic lab=VSS}
 C {devices/vsource.sym} 775 -930 0 0 {name=V2 value="pulse 0.6 0.9 75u 1u 1u 75u 150u"}
 C {devices/lab_pin.sym} 775 -870 3 0 {name=p33 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1555 -1240 3 0 {name=p35 sig_type=std_logic lab=VSS}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym} 1505 -1250 0 0 {name=X15}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LSHL_v3p1.sym} 1505 -1250 0 0 {name=X15}
 C {devices/lab_pin.sym} 1555 -920 3 0 {name=p34 sig_type=std_logic lab=VSS}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LevelShifter_HL_v1p1.sym} 1505 -930 0 0 {name=X16}
+C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LSHL_v3p1.sym} 1505 -930 0 0 {name=X16}
 C {devices/lab_pin.sym} 1555 -1340 1 0 {name=p43 sig_type=std_logic lab=VDIG}
 C {devices/lab_pin.sym} 1555 -1020 1 0 {name=p46 sig_type=std_logic lab=VDIG}
-C {devices/lab_pin.sym} 1525 -1340 1 0 {name=p50 sig_type=std_logic lab=VDD}
-C {devices/lab_pin.sym} 1525 -1020 1 0 {name=p51 sig_type=std_logic lab=VDD}
