@@ -327,18 +327,18 @@ value="
 
 .include /opt/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
 "}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym} 2005 -1290 0 0 {name=x13}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/short_pulse_generatorRC_v1p1.sym} 2005 -970 0 0 {name=x8}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/NOLRC2ns_v1p1.sym} 2835 -1115 0 0 {name=x1}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p4_IHP.sym} 1115 -1280 0 0 {name=x5}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/Esm22_CMOSVCOlowG_v6p4_IHP.sym} 1115 -960 0 0 {name=x2}
+C {short_pulse_generatorRC_v1p1.sym} 2005 -1290 0 0 {name=x13}
+C {short_pulse_generatorRC_v1p1.sym} 2005 -970 0 0 {name=x8}
+C {NOLRC2ns_v1p1.sym} 2835 -1115 0 0 {name=x1}
+C {Esm22_CMOSVCOlowG_v6p4_IHP.sym} 1115 -1280 0 0 {name=x5}
+C {Esm22_CMOSVCOlowG_v6p4_IHP.sym} 1115 -960 0 0 {name=x2}
 C {devices/lab_pin.sym} 1365 -620 1 0 {name=p11 sig_type=std_logic lab=VCP}
 C {devices/lab_pin.sym} 1370 -385 1 0 {name=p13 sig_type=std_logic lab=VCN}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym} 1615 -580 0 0 {name=X9}
+C {GateDriver_AM_v1p1.sym} 1615 -580 0 0 {name=X9}
 C {devices/lab_wire.sym} 1640 -435 0 0 {name=l10 sig_type=std_logic lab=VDIG}
 C {devices/lab_wire.sym} 1670 -335 2 0 {name=l16 sig_type=std_logic lab=VSS}
 C {devices/lab_wire.sym} 1670 -435 0 1 {name=l17 sig_type=std_logic lab=VDD_GD}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/GateDriver_AM_v1p1.sym} 1620 -345 0 0 {name=X4}
+C {GateDriver_AM_v1p1.sym} 1620 -345 0 0 {name=X4}
 C {devices/capa.sym} 2125 -1070 2 0 {name=C1
 m=1
 value=100f
@@ -351,8 +351,8 @@ value=100f
 footprint=1206
 device="ceramic capacitor"}
 C {devices/lab_pin.sym} 2125 -1450 1 0 {name=p16 sig_type=std_logic lab=VSS}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v5p1.sym} 1340 -1290 0 0 {name=x11}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/VCDLtop_v5p1.sym} 1340 -970 0 0 {name=x14}
+C {VCDLtop_v5p1.sym} 1340 -1290 0 0 {name=x11}
+C {VCDLtop_v5p1.sym} 1340 -970 0 0 {name=x14}
 C {devices/lab_pin.sym} 1715 -1290 1 0 {name=p17 sig_type=std_logic lab=V_1s_dl}
 C {devices/lab_pin.sym} 1710 -970 1 0 {name=p18 sig_type=std_logic lab=V_1r_dl}
 C {devices/lab_pin.sym} 1270 -1280 3 0 {name=p19 sig_type=std_logic lab=VCONTr}
@@ -364,8 +364,8 @@ C {devices/lab_pin.sym} 1340 -920 3 0 {name=p32 sig_type=std_logic lab=VSS}
 C {devices/vsource.sym} 775 -930 0 0 {name=V2 value="pulse 0.6 0.9 75u 1u 1u 75u 150u"}
 C {devices/lab_pin.sym} 775 -870 3 0 {name=p33 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1555 -1240 3 0 {name=p35 sig_type=std_logic lab=VSS}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LSHL_v3p1.sym} 1505 -1250 0 0 {name=X15}
+C {LSHL_v3p1.sym} 1505 -1250 0 0 {name=X15}
 C {devices/lab_pin.sym} 1555 -920 3 0 {name=p34 sig_type=std_logic lab=VSS}
-C {/home/designer/shared/TO202410_IHP_TDBuck/xschem/LSHL_v3p1.sym} 1505 -930 0 0 {name=X16}
+C {LSHL_v3p1.sym} 1505 -930 0 0 {name=X16}
 C {devices/lab_pin.sym} 1555 -1340 1 0 {name=p43 sig_type=std_logic lab=VDIG}
 C {devices/lab_pin.sym} 1555 -1020 1 0 {name=p46 sig_type=std_logic lab=VDIG}
